@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Result App</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container{
+            width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h2{
+            text-align: center;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button{
+            width: 100%;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: darkblue;
+        }
+
+        #result{
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Student Result Calculator</h2>
+
+        <label>
+            Enter Number of Subjects
+        </label>
+
+        <input type="number"
+               id="subjectCount">
+
+        <button onclick="calculateResult()">
+            Calculate Result
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        function calculateResult()
+        {
+            let count =
+            document.getElementById("subjectCount").value;
+
+            let total = 0;
+
+            // Loop for marks
+            for(let i = 1; i <= count; i++)
+            {
+                let marks = Number(
+                    prompt("Enter marks for Subject " + i)
+                );
+
+                total = total + marks;
+            }
+            let average = total / count;
+
+            let grade = "";
+            let result = "";
+            if(average >= 90)
+            {
+                grade = "A+";
+            }
+
+            else if(average >= 75)
+            {
+                grade = "A";
+            }
+
+            else if(average >= 60)
+            {
+                grade = "B";
+            }
+
+            else if(average >= 40)
+            {
+                grade = "C";
+            }
+
+            else
+            {
+                grade = "F";
+            }
+
+            // Pass or Fail
+            if(average >= 40)
+            {
+                result = "PASS";
+            }
+
+            else
+            {
+                result = "FAIL";
+            }
+
+
+            document.getElementById("result").innerHTML =
+            `
+            <h3>Total Marks: ${total}</h3>
+
+            <h3>Average Marks: ${average.toFixed(2)}</h3>
+
+            <h3>Grade: ${grade}</h3>
+
+            <h3>Result: ${result}</h3>
+            `;
+        }
+
+    </script>
+
+</body>
+</html>
